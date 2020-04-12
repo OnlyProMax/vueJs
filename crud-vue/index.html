@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Vue Js | Starting</title>
+</head>
+<body>
+    <div id="app"> <!-- Siempre tiene que estar dentro del id app -->
+       <!-- 
+           TODO::Envio de datos con VUE 
+        <h1>{{ titulo }}</h1>
+       <input type="text" v-model="nuevaFruta" @keyup.enter="agregarFruta">
+       <button @click="agregarFruta"> Agregar </button>
+       <ul>
+           <li v-for="fruta of frutas">
+                <input type="number" v-model.number="fruta.cantidad">
+                {{ fruta.nombre }}
+                <button @click="fruta.cantidad++" > + </button>
+                <span v-if="fruta.cantidad === 0" > - sin stock </span>
+           </li>
+       </ul>
+       <h4>Total: {{ sumarFrutas }}</h4>
+
+       -->
+       <!-- 
+           TODO: Clases en Vue
+
+       <div class="container mt-5">
+           <div :class="['p-3', 'text-white', fondo]">
+               <p>
+                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum odit corporis soluta beatae delectus consequuntur distinctio vero fuga enim assumenda! Vero qui tenetur dolores velit error culpa earum atque dolorem?
+               </p>
+           </div>
+           <input type="text" class="form-control my-3" v-model="fondo">
+           <div class="text-white p-3" :class="{'bg-info' : color, 'bg-success' : !color}">
+               <p>
+                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint iste necessitatibus dolor earum reprehenderit molestiae praesentium! Hic magni dolores enim! Rerum saepe atque ad, facere fuga maiores dolore cumque quasi.
+               </p>
+               <button class="mt-2 btn btn-primary" @click="color = !color">Cambiar</button>
+           </div>
+       </div>
+        -->
+        <!-- TODO: CRUD -->
+        <div class="container mt-5">
+            <h3>{{ titulo }}</h3>
+            <input type="text" class="form-control my-4" v-model="nuevaTarea" v-on:keyup.enter="agregarTarea">
+            <button class="btn btn-primary" @click="agregarTarea">
+                Agregar
+            </button>
+            <div class="mt-3" v-for="(tarea, index) of tareas">
+                <div role="alert" :class="[ 'alert', tarea.estado ? 'alert-success' : 'alert-danger' ]">
+                    <div class="d-flex justify-content-between">
+                        <div class="align-items-center">
+                            {{ index }} {{ tarea.nombre }} {{ tarea.estado }}
+                        </div>
+                        <div>
+                            <button class="btn btn-success btn-sm"  @click="editarTarea(index)" >Ok</button>
+                            <button class="btn btn-danger btn-sm" @click="eliminar(index)">X</button>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>    
+    <script src="js/practiceVue.js"></script>
+    <!-- Bootstrap -->
+</body>
+</html>
