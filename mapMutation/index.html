@@ -8,28 +8,20 @@
 </head>
 <body>
     <div class="container" id="app">
-        <titulo></titulo>
+        <padre></padre>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/vuex@2.0.0"></script>
     <script>
-        Vue.component('titulo',({
+        Vue.component('padre',({
             template:`
             <div>
                 <h1>titulo</h1>
-                <h1> numero {{ $store.state.numero }} padre. </h1>
-                <pre><h5> numero {{ $store.state.numero }} padre. </h5></pre>
                 <h1> numero {{ numero }} padre mapeado </h1>
-                <pre><h5> numero {{ numero }} padre mapeado </h5></pre>
                 <hijo></hijo>
             </div>
             `,
             computed:{
-                /*
-                numero(){
-                    return store.state.numero
-                }
-                */
                //de haber creado los componentes de forma individual, deberiamos importar el mapState para que pueda ser usado.
                ...Vuex.mapState(['numero']) //Dentro de mapState vamos a llamar a un arreglo, que dentro va a tener lo que haya en el state o lo que querramos usar.
             }
@@ -37,10 +29,18 @@
         Vue.component('hijo',{
             template:`
             <div>
-                <h1> numero {{ $store.state.numero }} hijo. </h1>
-                <button @click="$store.commit('aumentar')"> + </button>
+                <h1> numero {{ numero }} hijo mapeado </h1>
+                <button @click="aumentar"> + </button>
+                <button @click="disminuir(2)"> - </button>
             </div>
-            `
+            `,
+            computed:{
+               //de haber creado los componentes de forma individual, deberiamos importar el mapState para que pueda ser usado.
+               ...Vuex.mapState(['numero']) //Dentro de mapState vamos a llamar a un arreglo, que dentro va a tener lo que haya en el state o lo que querramos usar.
+            },
+            methods:{
+                ...Vuex.mapMutations(['aumentar','disminuir'])
+            } 
         });
         const store = new Vuex.Store({ //Acá instanciamos a Vuex
             state:{
@@ -50,6 +50,9 @@
                 aumentar( state ){ //Pasamos como parametro el state y así no ponemos el this.
                     state.numero++
                     //Así seria sin parametro -> this.state.numero++
+                },
+                disminuir( state, n ){
+                    state.numero-= n
                 }
             }
         });
