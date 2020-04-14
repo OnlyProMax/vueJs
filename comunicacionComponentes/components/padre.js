@@ -1,14 +1,17 @@
 Vue.component('padre',{
-    template:`
+    template:
+    `
     <div class="p-5 bg-dark text-white">
         <h1>Hola soy el padre: {{ numeroPadre }}</h1>
-        <button @click="numeroPadre" class="btn btn-danger"></button>
-        <hijo :numero="numeroPadre"></hijo>
+        <button @click="numeroPadre++" class="btn btn-danger">+</button>
+        {{ nombrePadre }}
+        <hijo :numero="numeroPadre" @nombreHijo="nombrePadre = $event"> </hijo> 
     </div>
-    `,
+    `,//Con el event estamos trayendo el evento que creamos en el componente hijo con el this.nombre.
     data(){
         return{
-            numeroPadre: 0
+            numeroPadre: 0,
+            nombrePadre: ''
         }
     }
 });
