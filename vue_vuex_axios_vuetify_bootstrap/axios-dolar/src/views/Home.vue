@@ -43,7 +43,7 @@ export default {
         let datos = await axios.get(`https://mindicador.cl/api/dolar/${ddmmyy}`);
 
         if( datos.data.serie.length > 0 ){
-          this.valor = await datos.data.serie[0].valor;
+          this.valor = await datos.data.serie[0].valor/12.98;
         }else{
           this.valor = 'Sin resultados'
         }
