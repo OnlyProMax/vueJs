@@ -1,12 +1,23 @@
+/*Express*/
 const express = require('express');
 const app = express();
-
 /* Instalamos morgan para visualizar en consola las peticiones que se hagan a nuestro SV */
 const morgan = require('morgan');
 /* Instalamos el CORS para que puedan hacer peticiones de otros dominios. */
 const cors = require('cors');
 /* Accedemos al directorio actual */
 const path = require('path');
+/* Conexión a DB */
+const mongoose = require('mongoose');
+const uri = 'mongodb://localhost:27017/mevndb';
+const options = { useNewUrlParser: true, useCreateIndex: true };
+
+mongoose.connect(uri, options).then(
+    /** ready to use. The `mongoose.connect()` promise resolves to mongoose instance. */
+    () => { console.log('Conectado a DB') },
+    /** handle initial connection error */
+    err => { console.log(err) }
+);
 
 app.use(morgan('tiny'));
 
